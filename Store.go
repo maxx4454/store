@@ -26,331 +26,644 @@ var (
 	_ = common.Big1
 	_ = types.BloomLookup
 	_ = event.NewSubscription
-	_ = abi.ConvertType
 )
 
-// UniMetaData contains all meta data concerning the Uni contract.
-var UniMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_factory\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_WETH9\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"WETH9\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"}],\"name\":\"quoteExactInput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"name\":\"quoteExactInputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"name\":\"quoteExactOutput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"name\":\"quoteExactOutputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount0Delta\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"amount1Delta\",\"type\":\"int256\"},{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"}],\"name\":\"uniswapV3SwapCallback\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+// StoreMetaData contains all meta data concerning the Store contract.
+var StoreMetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"tickLower\",\"type\":\"int24\"},{\"indexed\":true,\"name\":\"tickUpper\",\"type\":\"int24\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint128\"},{\"indexed\":false,\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Mint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"tickLower\",\"type\":\"int24\"},{\"indexed\":true,\"name\":\"tickUpper\",\"type\":\"int24\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint128\"},{\"indexed\":false,\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Burn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount0\",\"type\":\"int256\"},{\"indexed\":false,\"name\":\"amount1\",\"type\":\"int256\"},{\"indexed\":false,\"name\":\"sqrtPriceX96\",\"type\":\"uint160\"},{\"indexed\":false,\"name\":\"liquidity\",\"type\":\"uint128\"},{\"indexed\":false,\"name\":\"tick\",\"type\":\"int24\"}],\"name\":\"Swap\",\"type\":\"event\"}]",
 }
 
-// UniABI is the input ABI used to generate the binding from.
-// Deprecated: Use UniMetaData.ABI instead.
-var UniABI = UniMetaData.ABI
+// StoreABI is the input ABI used to generate the binding from.
+// Deprecated: Use StoreMetaData.ABI instead.
+var StoreABI = StoreMetaData.ABI
 
-// Uni is an auto generated Go binding around an Ethereum contract.
-type Uni struct {
-	UniCaller     // Read-only binding to the contract
-	UniTransactor // Write-only binding to the contract
-	UniFilterer   // Log filterer for contract events
+// Store is an auto generated Go binding around an Ethereum contract.
+type Store struct {
+	StoreCaller     // Read-only binding to the contract
+	StoreTransactor // Write-only binding to the contract
+	StoreFilterer   // Log filterer for contract events
 }
 
-// UniCaller is an auto generated read-only Go binding around an Ethereum contract.
-type UniCaller struct {
+// StoreCaller is an auto generated read-only Go binding around an Ethereum contract.
+type StoreCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// UniTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type UniTransactor struct {
+// StoreTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type StoreTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// UniFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type UniFilterer struct {
+// StoreFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type StoreFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// UniSession is an auto generated Go binding around an Ethereum contract,
+// StoreSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type UniSession struct {
-	Contract     *Uni              // Generic contract binding to set the session for
+type StoreSession struct {
+	Contract     *Store            // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// UniCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// StoreCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type UniCallerSession struct {
-	Contract *UniCaller    // Generic contract caller binding to set the session for
+type StoreCallerSession struct {
+	Contract *StoreCaller  // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts // Call options to use throughout this session
 }
 
-// UniTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// StoreTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type UniTransactorSession struct {
-	Contract     *UniTransactor    // Generic contract transactor binding to set the session for
+type StoreTransactorSession struct {
+	Contract     *StoreTransactor  // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// UniRaw is an auto generated low-level Go binding around an Ethereum contract.
-type UniRaw struct {
-	Contract *Uni // Generic contract binding to access the raw methods on
+// StoreRaw is an auto generated low-level Go binding around an Ethereum contract.
+type StoreRaw struct {
+	Contract *Store // Generic contract binding to access the raw methods on
 }
 
-// UniCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type UniCallerRaw struct {
-	Contract *UniCaller // Generic read-only contract binding to access the raw methods on
+// StoreCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type StoreCallerRaw struct {
+	Contract *StoreCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// UniTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type UniTransactorRaw struct {
-	Contract *UniTransactor // Generic write-only contract binding to access the raw methods on
+// StoreTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type StoreTransactorRaw struct {
+	Contract *StoreTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewUni creates a new instance of Uni, bound to a specific deployed contract.
-func NewUni(address common.Address, backend bind.ContractBackend) (*Uni, error) {
-	contract, err := bindUni(address, backend, backend, backend)
+// NewStore creates a new instance of Store, bound to a specific deployed contract.
+func NewStore(address common.Address, backend bind.ContractBackend) (*Store, error) {
+	contract, err := bindStore(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &Uni{UniCaller: UniCaller{contract: contract}, UniTransactor: UniTransactor{contract: contract}, UniFilterer: UniFilterer{contract: contract}}, nil
+	return &Store{StoreCaller: StoreCaller{contract: contract}, StoreTransactor: StoreTransactor{contract: contract}, StoreFilterer: StoreFilterer{contract: contract}}, nil
 }
 
-// NewUniCaller creates a new read-only instance of Uni, bound to a specific deployed contract.
-func NewUniCaller(address common.Address, caller bind.ContractCaller) (*UniCaller, error) {
-	contract, err := bindUni(address, caller, nil, nil)
+// NewStoreCaller creates a new read-only instance of Store, bound to a specific deployed contract.
+func NewStoreCaller(address common.Address, caller bind.ContractCaller) (*StoreCaller, error) {
+	contract, err := bindStore(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &UniCaller{contract: contract}, nil
+	return &StoreCaller{contract: contract}, nil
 }
 
-// NewUniTransactor creates a new write-only instance of Uni, bound to a specific deployed contract.
-func NewUniTransactor(address common.Address, transactor bind.ContractTransactor) (*UniTransactor, error) {
-	contract, err := bindUni(address, nil, transactor, nil)
+// NewStoreTransactor creates a new write-only instance of Store, bound to a specific deployed contract.
+func NewStoreTransactor(address common.Address, transactor bind.ContractTransactor) (*StoreTransactor, error) {
+	contract, err := bindStore(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &UniTransactor{contract: contract}, nil
+	return &StoreTransactor{contract: contract}, nil
 }
 
-// NewUniFilterer creates a new log filterer instance of Uni, bound to a specific deployed contract.
-func NewUniFilterer(address common.Address, filterer bind.ContractFilterer) (*UniFilterer, error) {
-	contract, err := bindUni(address, nil, nil, filterer)
+// NewStoreFilterer creates a new log filterer instance of Store, bound to a specific deployed contract.
+func NewStoreFilterer(address common.Address, filterer bind.ContractFilterer) (*StoreFilterer, error) {
+	contract, err := bindStore(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &UniFilterer{contract: contract}, nil
+	return &StoreFilterer{contract: contract}, nil
 }
 
-// bindUni binds a generic wrapper to an already deployed contract.
-func bindUni(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := UniMetaData.GetAbi()
+// bindStore binds a generic wrapper to an already deployed contract.
+func bindStore(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(StoreABI))
 	if err != nil {
 		return nil, err
 	}
-	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Uni *UniRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Uni.Contract.UniCaller.contract.Call(opts, result, method, params...)
+func (_Store *StoreRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Store.Contract.StoreCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Uni *UniRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Uni.Contract.UniTransactor.contract.Transfer(opts)
+func (_Store *StoreRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Store.Contract.StoreTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Uni *UniRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Uni.Contract.UniTransactor.contract.Transact(opts, method, params...)
+func (_Store *StoreRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Store.Contract.StoreTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Uni *UniCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Uni.Contract.contract.Call(opts, result, method, params...)
+func (_Store *StoreCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Store.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Uni *UniTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Uni.Contract.contract.Transfer(opts)
+func (_Store *StoreTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Store.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Uni *UniTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Uni.Contract.contract.Transact(opts, method, params...)
+func (_Store *StoreTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Store.Contract.contract.Transact(opts, method, params...)
 }
 
-// WETH9 is a free data retrieval call binding the contract method 0x4aa4a4fc.
-//
-// Solidity: function WETH9() view returns(address)
-func (_Uni *UniCaller) WETH9(opts *bind.CallOpts) (common.Address, error) {
-	var out []interface{}
-	err := _Uni.contract.Call(opts, &out, "WETH9")
+// StoreBurnIterator is returned from FilterBurn and is used to iterate over the raw logs and unpacked data for Burn events raised by the Store contract.
+type StoreBurnIterator struct {
+	Event *StoreBurn // Event containing the contract specifics and raw log
 
-	if err != nil {
-		return *new(common.Address), err
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *StoreBurnIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(StoreBurn)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(StoreBurn)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *StoreBurnIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *StoreBurnIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// StoreBurn represents a Burn event raised by the Store contract.
+type StoreBurn struct {
+	Owner     common.Address
+	TickLower *big.Int
+	TickUpper *big.Int
+	Amount    *big.Int
+	Amount0   *big.Int
+	Amount1   *big.Int
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterBurn is a free log retrieval operation binding the contract event 0x0c396cd989a39f4459b5fa1aed6a9a8dcdbc45908acfd67e028cd568da98982c.
+//
+// Solidity: event Burn(address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) FilterBurn(opts *bind.FilterOpts, owner []common.Address, tickLower []*big.Int, tickUpper []*big.Int) (*StoreBurnIterator, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+	var tickLowerRule []interface{}
+	for _, tickLowerItem := range tickLower {
+		tickLowerRule = append(tickLowerRule, tickLowerItem)
+	}
+	var tickUpperRule []interface{}
+	for _, tickUpperItem := range tickUpper {
+		tickUpperRule = append(tickUpperRule, tickUpperItem)
 	}
 
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// WETH9 is a free data retrieval call binding the contract method 0x4aa4a4fc.
-//
-// Solidity: function WETH9() view returns(address)
-func (_Uni *UniSession) WETH9() (common.Address, error) {
-	return _Uni.Contract.WETH9(&_Uni.CallOpts)
-}
-
-// WETH9 is a free data retrieval call binding the contract method 0x4aa4a4fc.
-//
-// Solidity: function WETH9() view returns(address)
-func (_Uni *UniCallerSession) WETH9() (common.Address, error) {
-	return _Uni.Contract.WETH9(&_Uni.CallOpts)
-}
-
-// Factory is a free data retrieval call binding the contract method 0xc45a0155.
-//
-// Solidity: function factory() view returns(address)
-func (_Uni *UniCaller) Factory(opts *bind.CallOpts) (common.Address, error) {
-	var out []interface{}
-	err := _Uni.contract.Call(opts, &out, "factory")
-
+	logs, sub, err := _Store.contract.FilterLogs(opts, "Burn", ownerRule, tickLowerRule, tickUpperRule)
 	if err != nil {
-		return *new(common.Address), err
+		return nil, err
+	}
+	return &StoreBurnIterator{contract: _Store.contract, event: "Burn", logs: logs, sub: sub}, nil
+}
+
+// WatchBurn is a free log subscription operation binding the contract event 0x0c396cd989a39f4459b5fa1aed6a9a8dcdbc45908acfd67e028cd568da98982c.
+//
+// Solidity: event Burn(address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) WatchBurn(opts *bind.WatchOpts, sink chan<- *StoreBurn, owner []common.Address, tickLower []*big.Int, tickUpper []*big.Int) (event.Subscription, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+	var tickLowerRule []interface{}
+	for _, tickLowerItem := range tickLower {
+		tickLowerRule = append(tickLowerRule, tickLowerItem)
+	}
+	var tickUpperRule []interface{}
+	for _, tickUpperItem := range tickUpper {
+		tickUpperRule = append(tickUpperRule, tickUpperItem)
 	}
 
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// Factory is a free data retrieval call binding the contract method 0xc45a0155.
-//
-// Solidity: function factory() view returns(address)
-func (_Uni *UniSession) Factory() (common.Address, error) {
-	return _Uni.Contract.Factory(&_Uni.CallOpts)
-}
-
-// Factory is a free data retrieval call binding the contract method 0xc45a0155.
-//
-// Solidity: function factory() view returns(address)
-func (_Uni *UniCallerSession) Factory() (common.Address, error) {
-	return _Uni.Contract.Factory(&_Uni.CallOpts)
-}
-
-// UniswapV3SwapCallback is a free data retrieval call binding the contract method 0xfa461e33.
-//
-// Solidity: function uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes path) view returns()
-func (_Uni *UniCaller) UniswapV3SwapCallback(opts *bind.CallOpts, amount0Delta *big.Int, amount1Delta *big.Int, path []byte) error {
-	var out []interface{}
-	err := _Uni.contract.Call(opts, &out, "uniswapV3SwapCallback", amount0Delta, amount1Delta, path)
-
+	logs, sub, err := _Store.contract.WatchLogs(opts, "Burn", ownerRule, tickLowerRule, tickUpperRule)
 	if err != nil {
-		return err
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(StoreBurn)
+				if err := _Store.contract.UnpackLog(event, "Burn", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseBurn is a log parse operation binding the contract event 0x0c396cd989a39f4459b5fa1aed6a9a8dcdbc45908acfd67e028cd568da98982c.
+//
+// Solidity: event Burn(address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) ParseBurn(log types.Log) (*StoreBurn, error) {
+	event := new(StoreBurn)
+	if err := _Store.contract.UnpackLog(event, "Burn", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// StoreMintIterator is returned from FilterMint and is used to iterate over the raw logs and unpacked data for Mint events raised by the Store contract.
+type StoreMintIterator struct {
+	Event *StoreMint // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *StoreMintIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(StoreMint)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(StoreMint)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *StoreMintIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *StoreMintIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// StoreMint represents a Mint event raised by the Store contract.
+type StoreMint struct {
+	Sender    common.Address
+	Owner     common.Address
+	TickLower *big.Int
+	TickUpper *big.Int
+	Amount    *big.Int
+	Amount0   *big.Int
+	Amount1   *big.Int
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterMint is a free log retrieval operation binding the contract event 0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde.
+//
+// Solidity: event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) FilterMint(opts *bind.FilterOpts, owner []common.Address, tickLower []*big.Int, tickUpper []*big.Int) (*StoreMintIterator, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+	var tickLowerRule []interface{}
+	for _, tickLowerItem := range tickLower {
+		tickLowerRule = append(tickLowerRule, tickLowerItem)
+	}
+	var tickUpperRule []interface{}
+	for _, tickUpperItem := range tickUpper {
+		tickUpperRule = append(tickUpperRule, tickUpperItem)
 	}
 
-	return err
-
+	logs, sub, err := _Store.contract.FilterLogs(opts, "Mint", ownerRule, tickLowerRule, tickUpperRule)
+	if err != nil {
+		return nil, err
+	}
+	return &StoreMintIterator{contract: _Store.contract, event: "Mint", logs: logs, sub: sub}, nil
 }
 
-// UniswapV3SwapCallback is a free data retrieval call binding the contract method 0xfa461e33.
+// WatchMint is a free log subscription operation binding the contract event 0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde.
 //
-// Solidity: function uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes path) view returns()
-func (_Uni *UniSession) UniswapV3SwapCallback(amount0Delta *big.Int, amount1Delta *big.Int, path []byte) error {
-	return _Uni.Contract.UniswapV3SwapCallback(&_Uni.CallOpts, amount0Delta, amount1Delta, path)
+// Solidity: event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) WatchMint(opts *bind.WatchOpts, sink chan<- *StoreMint, owner []common.Address, tickLower []*big.Int, tickUpper []*big.Int) (event.Subscription, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+	var tickLowerRule []interface{}
+	for _, tickLowerItem := range tickLower {
+		tickLowerRule = append(tickLowerRule, tickLowerItem)
+	}
+	var tickUpperRule []interface{}
+	for _, tickUpperItem := range tickUpper {
+		tickUpperRule = append(tickUpperRule, tickUpperItem)
+	}
+
+	logs, sub, err := _Store.contract.WatchLogs(opts, "Mint", ownerRule, tickLowerRule, tickUpperRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(StoreMint)
+				if err := _Store.contract.UnpackLog(event, "Mint", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
 }
 
-// UniswapV3SwapCallback is a free data retrieval call binding the contract method 0xfa461e33.
+// ParseMint is a log parse operation binding the contract event 0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde.
 //
-// Solidity: function uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes path) view returns()
-func (_Uni *UniCallerSession) UniswapV3SwapCallback(amount0Delta *big.Int, amount1Delta *big.Int, path []byte) error {
-	return _Uni.Contract.UniswapV3SwapCallback(&_Uni.CallOpts, amount0Delta, amount1Delta, path)
+// Solidity: event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+func (_Store *StoreFilterer) ParseMint(log types.Log) (*StoreMint, error) {
+	event := new(StoreMint)
+	if err := _Store.contract.UnpackLog(event, "Mint", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
-// QuoteExactInput is a paid mutator transaction binding the contract method 0xcdca1753.
-//
-// Solidity: function quoteExactInput(bytes path, uint256 amountIn) returns(uint256 amountOut)
-func (_Uni *UniTransactor) QuoteExactInput(opts *bind.TransactOpts, path []byte, amountIn *big.Int) (*types.Transaction, error) {
-	return _Uni.contract.Transact(opts, "quoteExactInput", path, amountIn)
+// StoreSwapIterator is returned from FilterSwap and is used to iterate over the raw logs and unpacked data for Swap events raised by the Store contract.
+type StoreSwapIterator struct {
+	Event *StoreSwap // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
 }
 
-// QuoteExactInput is a paid mutator transaction binding the contract method 0xcdca1753.
-//
-// Solidity: function quoteExactInput(bytes path, uint256 amountIn) returns(uint256 amountOut)
-func (_Uni *UniSession) QuoteExactInput(path []byte, amountIn *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactInput(&_Uni.TransactOpts, path, amountIn)
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *StoreSwapIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(StoreSwap)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(StoreSwap)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
 }
 
-// QuoteExactInput is a paid mutator transaction binding the contract method 0xcdca1753.
-//
-// Solidity: function quoteExactInput(bytes path, uint256 amountIn) returns(uint256 amountOut)
-func (_Uni *UniTransactorSession) QuoteExactInput(path []byte, amountIn *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactInput(&_Uni.TransactOpts, path, amountIn)
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *StoreSwapIterator) Error() error {
+	return it.fail
 }
 
-// QuoteExactInputSingle is a paid mutator transaction binding the contract method 0xf7729d43.
-//
-// Solidity: function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) returns(uint256 amountOut)
-func (_Uni *UniTransactor) QuoteExactInputSingle(opts *bind.TransactOpts, tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountIn *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.contract.Transact(opts, "quoteExactInputSingle", tokenIn, tokenOut, fee, amountIn, sqrtPriceLimitX96)
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *StoreSwapIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
 }
 
-// QuoteExactInputSingle is a paid mutator transaction binding the contract method 0xf7729d43.
-//
-// Solidity: function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) returns(uint256 amountOut)
-func (_Uni *UniSession) QuoteExactInputSingle(tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountIn *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactInputSingle(&_Uni.TransactOpts, tokenIn, tokenOut, fee, amountIn, sqrtPriceLimitX96)
+// StoreSwap represents a Swap event raised by the Store contract.
+type StoreSwap struct {
+	Sender       common.Address
+	Recipient    common.Address
+	Amount0      *big.Int
+	Amount1      *big.Int
+	SqrtPriceX96 *big.Int
+	Liquidity    *big.Int
+	Tick         *big.Int
+	Raw          types.Log // Blockchain specific contextual infos
 }
 
-// QuoteExactInputSingle is a paid mutator transaction binding the contract method 0xf7729d43.
+// FilterSwap is a free log retrieval operation binding the contract event 0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67.
 //
-// Solidity: function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) returns(uint256 amountOut)
-func (_Uni *UniTransactorSession) QuoteExactInputSingle(tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountIn *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactInputSingle(&_Uni.TransactOpts, tokenIn, tokenOut, fee, amountIn, sqrtPriceLimitX96)
+// Solidity: event Swap(address indexed sender, address indexed recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick)
+func (_Store *StoreFilterer) FilterSwap(opts *bind.FilterOpts, sender []common.Address, recipient []common.Address) (*StoreSwapIterator, error) {
+
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+	var recipientRule []interface{}
+	for _, recipientItem := range recipient {
+		recipientRule = append(recipientRule, recipientItem)
+	}
+
+	logs, sub, err := _Store.contract.FilterLogs(opts, "Swap", senderRule, recipientRule)
+	if err != nil {
+		return nil, err
+	}
+	return &StoreSwapIterator{contract: _Store.contract, event: "Swap", logs: logs, sub: sub}, nil
 }
 
-// QuoteExactOutput is a paid mutator transaction binding the contract method 0x2f80bb1d.
+// WatchSwap is a free log subscription operation binding the contract event 0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67.
 //
-// Solidity: function quoteExactOutput(bytes path, uint256 amountOut) returns(uint256 amountIn)
-func (_Uni *UniTransactor) QuoteExactOutput(opts *bind.TransactOpts, path []byte, amountOut *big.Int) (*types.Transaction, error) {
-	return _Uni.contract.Transact(opts, "quoteExactOutput", path, amountOut)
+// Solidity: event Swap(address indexed sender, address indexed recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick)
+func (_Store *StoreFilterer) WatchSwap(opts *bind.WatchOpts, sink chan<- *StoreSwap, sender []common.Address, recipient []common.Address) (event.Subscription, error) {
+
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+	var recipientRule []interface{}
+	for _, recipientItem := range recipient {
+		recipientRule = append(recipientRule, recipientItem)
+	}
+
+	logs, sub, err := _Store.contract.WatchLogs(opts, "Swap", senderRule, recipientRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(StoreSwap)
+				if err := _Store.contract.UnpackLog(event, "Swap", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
 }
 
-// QuoteExactOutput is a paid mutator transaction binding the contract method 0x2f80bb1d.
+// ParseSwap is a log parse operation binding the contract event 0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67.
 //
-// Solidity: function quoteExactOutput(bytes path, uint256 amountOut) returns(uint256 amountIn)
-func (_Uni *UniSession) QuoteExactOutput(path []byte, amountOut *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactOutput(&_Uni.TransactOpts, path, amountOut)
-}
-
-// QuoteExactOutput is a paid mutator transaction binding the contract method 0x2f80bb1d.
-//
-// Solidity: function quoteExactOutput(bytes path, uint256 amountOut) returns(uint256 amountIn)
-func (_Uni *UniTransactorSession) QuoteExactOutput(path []byte, amountOut *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactOutput(&_Uni.TransactOpts, path, amountOut)
-}
-
-// QuoteExactOutputSingle is a paid mutator transaction binding the contract method 0x30d07f21.
-//
-// Solidity: function quoteExactOutputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountOut, uint160 sqrtPriceLimitX96) returns(uint256 amountIn)
-func (_Uni *UniTransactor) QuoteExactOutputSingle(opts *bind.TransactOpts, tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountOut *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.contract.Transact(opts, "quoteExactOutputSingle", tokenIn, tokenOut, fee, amountOut, sqrtPriceLimitX96)
-}
-
-// QuoteExactOutputSingle is a paid mutator transaction binding the contract method 0x30d07f21.
-//
-// Solidity: function quoteExactOutputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountOut, uint160 sqrtPriceLimitX96) returns(uint256 amountIn)
-func (_Uni *UniSession) QuoteExactOutputSingle(tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountOut *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactOutputSingle(&_Uni.TransactOpts, tokenIn, tokenOut, fee, amountOut, sqrtPriceLimitX96)
-}
-
-// QuoteExactOutputSingle is a paid mutator transaction binding the contract method 0x30d07f21.
-//
-// Solidity: function quoteExactOutputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountOut, uint160 sqrtPriceLimitX96) returns(uint256 amountIn)
-func (_Uni *UniTransactorSession) QuoteExactOutputSingle(tokenIn common.Address, tokenOut common.Address, fee *big.Int, amountOut *big.Int, sqrtPriceLimitX96 *big.Int) (*types.Transaction, error) {
-	return _Uni.Contract.QuoteExactOutputSingle(&_Uni.TransactOpts, tokenIn, tokenOut, fee, amountOut, sqrtPriceLimitX96)
+// Solidity: event Swap(address indexed sender, address indexed recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick)
+func (_Store *StoreFilterer) ParseSwap(log types.Log) (*StoreSwap, error) {
+	event := new(StoreSwap)
+	if err := _Store.contract.UnpackLog(event, "Swap", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
